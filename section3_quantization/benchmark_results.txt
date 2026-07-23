@@ -1,0 +1,67 @@
+=== Qwen2.5-0.5B-Instruct GGUF Benchmark Results ===
+
+Date: 2026-07-21
+Hardware: CPU-only (WSL2 on Windows), via llama.cpp Python bindings
+Context window: 512 tokens | Max output tokens: 128
+
+Model: Q8_0 (near-FP16) — models/qwen2.5-0.5b-instruct-q8_0.gguf
+Size: 644.4 MB | RAM: 695 MB | Avg Throughput: 44.4 tok/s
+
+Q1: What is the capital of Egypt?
+A:  The capital of Egypt is Cairo.
+    tokens: 7 | time: 0.26s | tok/s: 26.4
+
+Q2: Explain what a large language model is in one sentence.
+A:  A large language model is a machine learning model that can generate human-like text...
+    tokens: 43 | time: 0.98s | tok/s: 43.7
+
+Q3: Write a short Python function that reverses a string.
+A:  def reverse_string(s): return s[::-1]
+    tokens: 119 | time: 2.62s | tok/s: 45.4
+
+Q4: What are the main trade-offs between model size and accuracy?
+A:  Model size and accuracy are two critical factors that influence the performance...
+    tokens: 128 | time: 2.80s | tok/s: 45.8
+
+Q5: Summarize the benefits of quantization in two sentences.
+A:  Quantization is a technique that reduces the number of bits used to represent a signal...
+    tokens: 41 | time: 0.95s | tok/s: 43.1
+
+----------------------------------------------------------------------
+
+Model: Q4_K_M (4-bit) — models/qwen2.5-0.5b-instruct-q4_k_m.gguf
+Size: 468.6 MB | RAM: 497 MB | Avg Throughput: 35.5 tok/s
+
+Q1: What is the capital of Egypt?
+A:  The capital of Egypt is Cairo.
+    tokens: 7 | time: 0.27s | tok/s: 25.5
+
+Q2: Explain what a large language model is in one sentence.
+A:  A large language model is a type of artificial intelligence that can process and generate large amounts of text...
+    tokens: 36 | time: 0.98s | tok/s: 36.7
+
+Q3: Write a short Python function that reverses a string.
+A:  def reverse_string(s): return s[::-1]  (+ usage example)
+    tokens: 128 | time: 5.03s | tok/s: 25.5
+
+Q4: What are the main trade-offs between model size and accuracy?
+A:  Model size and accuracy are two critical factors...
+    tokens: 128 | time: 2.59s | tok/s: 49.5
+
+Q5: Summarize the benefits of quantization in two sentences.
+A:  Quantization is a technique that reduces the precision of a signal...
+    tokens: 56 | time: 1.13s | tok/s: 49.4
+
+----------------------------------------------------------------------
+
+SUMMARY TABLE
+======================================================================
+Variant           Size (MB)   RAM (MB)   Tok/s   Quality
+----------------------------------------------------------------------
+Q8_0 (near-FP16)      644        695      44.4   Accurate, coherent
+Q4_K_M (4-bit)        469        497      35.5   Slightly shorter
+======================================================================
+
+Notable finding: Q8_0 is FASTER than Q4_K_M on CPU (44.4 vs 35.5 tok/s).
+This is expected — Q4 requires more expensive dequantization per token on CPU.
+On a GPU, Q4_K_M would be significantly faster.

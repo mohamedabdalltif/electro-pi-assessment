@@ -1,0 +1,45 @@
+=== LiveKit Agent Tool Calling — Live Execution Transcript ===
+
+Session Date: 2026-07-21 | Mode: Console Text Mode | Room: console-room
+
+─────────────────────────────────────────────────
+1. [AGENT GREETING — Generated on Session Start]
+─────────────────────────────────────────────────
+conversation_item_added {"role": "assistant", "text": "Hello! Welcome to QuickBite. How can I assist you with your order today?"}
+
+● Agent
+  Hello! Welcome to QuickBite. How can I assist you with your order today?
+
+─────────────────────────────────────────────────
+2. [USER INPUT]
+─────────────────────────────────────────────────
+conversation_item_added {"role": "user", "text": "hi can you check order 123?"}
+
+● You
+  hi can you check order 123?
+
+─────────────────────────────────────────────────
+3. [LLM TOOL CALL TRIGGERED]
+─────────────────────────────────────────────────
+2026-07-21 03:35:26,931 [DEBUG] executing tool
+2026-07-21 03:35:26,934 [INFO]  🔥 [Tool Invoked]: get_order_status(order_id='123')
+
+─────────────────────────────────────────────────
+4. [TOOL EXECUTION RESULT]
+─────────────────────────────────────────────────
+2026-07-21 03:35:26,937 [INFO]  ✅ [Tool Result]: Your order is being prepared and will arrive in 20 minutes.
+2026-07-21 03:35:26,940 [DEBUG] tools execution completed
+
+  ➜ get_order_status
+    ✓ Your order is being prepared and will arrive in 20 minutes.
+
+─────────────────────────────────────────────────
+5. [AGENT FINAL REPLY]
+─────────────────────────────────────────────────
+conversation_item_added {"role": "assistant", "text": "Your order with ID 123 is currently being prepared and is expected to arrive in 20 minutes. Is there anything else you would like to know or do regarding this order?"}
+
+● Agent
+  Your order with ID 123 is currently being prepared and is expected to arrive in 20 minutes.
+  Is there anything else you would like to know or do regarding this order?
+
+  llm_ttft: 1474ms

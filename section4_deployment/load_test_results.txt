@@ -1,0 +1,35 @@
+=== Section 4 — Load Test Results ===
+
+Date: 2026-07-23
+Server: FastAPI + llama-cpp-python (Qwen2.5-0.5B-Instruct Q4_K_M GGUF)
+Hardware: CPU-only (WSL2)
+Prompt: "Explain what quantization means for machine learning models in two sentences."
+
+TTFT via /generate/stream: 1.274s
+
+10 Concurrent Requests to /generate:
+  [01] OK  total=0.94s | tok/s=44.4
+  [02] OK  total=1.83s | tok/s=22.6
+  [03] OK  total=2.74s | tok/s=15.1
+  [04] OK  total=3.71s | tok/s=11.1
+  [05] OK  total=4.62s | tok/s=8.9
+  [06] OK  total=5.51s | tok/s=7.5
+  [07] OK  total=6.47s | tok/s=6.4
+  [08] OK  total=7.38s | tok/s=5.6
+  [09] OK  total=8.27s | tok/s=5.0
+  [10] OK  total=9.16s | tok/s=4.5
+
+==================================================
+LOAD TEST RESULTS
+==================================================
+  Concurrent requests : 10
+  TTFT (stream)       : 1.274s
+  Min latency         : 0.94s
+  Max latency         : 9.16s
+  Avg latency         : 5.06s
+  Total wall time     : 9.16s
+==================================================
+
+Note: tok/s decreases per request because llama.cpp is single-threaded.
+Requests are serialized via asyncio.Semaphore(1). Request N waits for requests 1..N-1.
+This is the expected CPU-only behavior. On GPU with vLLM, all 10 would run in parallel.

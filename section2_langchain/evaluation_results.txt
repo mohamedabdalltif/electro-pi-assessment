@@ -1,0 +1,31 @@
+=== RAG Pipeline Evaluation Results ===
+
+Date: 2026-07-21
+Embedding Model: Xenova/all-MiniLM-L6-v2 (ONNX Runtime, CPU)
+Vector Store: FAISS (faiss-cpu)
+LLM: openai/gpt-3.5-turbo via OpenRouter API
+Documents: 3 (refund_policy.md, delivery_terms.md, courier_support.md)
+Chunks Created: 9 (chunk_size=400, chunk_overlap=50)
+
+============================================================
+EVALUATION — 3 QUESTIONS
+============================================================
+
+Q1: What is the refund policy for missing items?
+----------------------------------------
+A1: Customers are eligible for a full refund for missing items within 3-5 business days. [refund_policy.md]
+
+Q2: How much is the base delivery fee and how does surge pricing work?
+----------------------------------------
+A2: The base delivery fee is $2.99 for orders within 3 km. Surge pricing of up to 1.5x applies during peak hours or severe weather. [delivery_terms.md]
+
+Q3: What is the capital of France?
+----------------------------------------
+A3: I cannot answer this based on the provided documents. No relevant context was found.
+
+============================================================
+SUMMARY
+============================================================
+Q1 — In-domain: ✅ Correct answer with source citation [refund_policy.md]
+Q2 — In-domain: ✅ Correct answer with source citation [delivery_terms.md]
+Q3 — Out-of-domain: ✅ Guardrail triggered correctly (no hallucination)

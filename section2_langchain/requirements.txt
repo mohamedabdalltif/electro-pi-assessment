@@ -1,0 +1,9 @@
+langchain
+langchain-community
+langchain-openai
+faiss-cpu
+onnxruntime
+tokenizers
+numpy
+python-dotenv
+huggingface-hub
